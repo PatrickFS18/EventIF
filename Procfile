@@ -1,0 +1,1 @@
+web: gunicorn eventIF.eventIF.wsgi --log-file -
