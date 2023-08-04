@@ -1,0 +1,14 @@
+Olá! Tudo bem?
+
+Muito Obrigado por se inscrever no Eventif.
+
+Estes foram os dados que você enviou no formulário na sua inscrição
+
+Nome: {{ name }}
+CPF: {{ cpf }}
+email: {{ email }}
+telefone: {{ phone }}
+
+Em até 48h úteis alguém da nossa equipe entrará em contato com tigo para concluirmos a sua inscrição.
+Antesionacemente,
+Equipe EventIF
