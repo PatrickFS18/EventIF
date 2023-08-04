@@ -12,7 +12,7 @@ def subscribe(request):
         mail.send_mail('Confirmação de inscrição',
                        body,
                        'contato@eventif.com.br',
-                       ['contato@eventif.com.br','patrick.souza@aluno.riogrande.ifrs.edu.br'])
+                       ['contato@eventif.com.br',form.cleaned_data['email']])
         return HttpResponseRedirect('/inscricao/')
     context= {"form" : SubscriptionForm()}
     return render(request, 'subscriptions/subscription_form.html',context)
