@@ -5,7 +5,7 @@ class Contact(models.Model):
     email = models.EmailField()
     mensagem = models.TextField()
     telefone = models.CharField(max_length=15, blank=True, null=True)
-    data_envio = models.DateTimeField(auto_now_add=True)
+    CreatedAt = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.nome
