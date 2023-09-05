@@ -1,0 +1,11 @@
+DEBUG=False
+SECRET_KEY=
+ALLOWED_HOSTS=127.0.0.1 , .localhost, .pythonanywhere.com
+EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackEnd
+EMAIL_HOST=localhost 
+EMAIL_PORT=25
+EMAIL_USO_TLS=False
+EMAIL_HOST_USER=
+EMAIL_HOST_PASSWORD=
+EMAIL_USE_TLS=True
+DEFAULT_FROM_EMAIL=preencherComEmailDeEnvio@teste.com
