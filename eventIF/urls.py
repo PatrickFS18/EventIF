@@ -9,6 +9,6 @@ urlpatterns = [
   path('', home),
   path('inscricao/', subscribe),
   path('admin/', admin.site.urls),
-path('contato/', contact, name='contact_form'),
+    path('contato/', contact, name='contact_form'),
 
 ]

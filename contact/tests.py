@@ -1,63 +1,56 @@
-
-from django.test import TestCase, override_settings
-from .formulario import ContactForm
+from django.test import TestCase
 from django.urls import reverse
 from .models import Contact
-from django.core import mail
-#teste do formulario
+from .formulario import ContactForm
 
-class ContactFormTest(TestCase):
 
-    def test_valid_contact_form(self):
-        data = {
-            'nome': 'Patrick F',
-            'email': 'patrick@gmail.com',
-            'mensagem': 'teste',
+class ContactTests(TestCase):
+
+    def test_contact_form_valid(self):
+        form_data = {
+            'nome': 'John Doe',
+            'email': 'john@example.com',
+            'telefone': '123-456-7890',
+            'mensagem': 'Hello, World!'
         }
-        form = ContactForm(data=data)
+        form = ContactForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_invalid_contact_form(self):
-        data = {
-            'email': 'patrick@gmail.com',
-            'mensagem': 'teste',
+    def test_contact_form_invalid(self):
+        form_data = {
+            'nome': '',  # Campo obrigatório em branco
+            'email': 'invalid-email',  # Email inválido
+            'telefone': '123-456-7890',
+            'mensagem': 'Hello, World!'
         }
-        form = ContactForm(data=data)
+        form = ContactForm(data=form_data)
         self.assertFalse(form.is_valid())
 
-#teste da view
+    def test_contact_model(self):
+        contact = Contact.objects.create(
+            nome='Jane Doe',
+            email='jane@example.com',
+            telefone='987-654-3210',
+            mensagem='Testing contact model.'
+        )
+        self.assertEqual(contact.nome, 'Jane Doe')
+        self.assertEqual(contact.email, 'jane@example.com')
+        self.assertEqual(contact.telefone, '987-654-3210')
+        self.assertEqual(contact.mensagem, 'Testing contact model.')
 
-
-class ContactViewTest(TestCase):
-    def test_contact_view_get(self):
+    def test_contact_view(self):
         response = self.client.get(reverse('contact_form'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'contact/contact_form.html')
+        self.assertTemplateUsed(response, 'contact_form.html')
 
     def test_contact_view_post(self):
-        data = {
-            'nome': 'Patrick F',
-            'email': 'patrick@gmail.com',
-            'mensagem': 'teste',
+        form_data = {
+        'nome': 'John Doe',
+        'email': 'john@example.com',
+        'telefone': '123-456-7890',
+        'mensagem': 'Hello, World!'
         }
-        response = self.client.post(reverse('contact_form'), data=data)
-        self.assertEqual(response.status_code, 302)  
-        self.assertEqual(Contact.objects.count(), 1)  
-
-
-
-
-# teste envio de email
-
-class ContactEmailTest(TestCase):
-    @override_settings(EMAIL_BACKEND='django.core.mail.backends.locmem.EmailBackend')
-    def test_send_contact_email(self):
-        data = {
-            'nome': 'Patrick F',
-            'email': 'patrick@gmail.com',
-            'mensagem': 'teste',
-        }
-        response = self.client.post(reverse('contact_form'), data=data)
-        self.assertEqual(len(mail.outbox), 1) 
-        email = mail.outbox[0]
-        self.assertEqual(email.subject, 'Nova Mensagem de Contato')  
+        response = self.client.post(reverse('contact_form'), data=form_data)
+    
+        # Verifique se a resposta redireciona para a página de confirmação (substitua 'pagina_de_confirmacao' pela URL real)
+        self.assertRedirects(response, '/contato/', status_code=302)

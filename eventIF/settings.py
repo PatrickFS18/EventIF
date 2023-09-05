@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = "django-insecure-ln-ey7+8@$(dody_1hvn#+i#9a#l!))542oq*%*%y1ptp20r#6"
 SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', default=False, cast=bool)
+DEBUG = config('DEBUG', default=True, cast=bool)
 
 #Adicionar no meu projeto QMCT: baixar na venv o python-decouple;criar o .env e colocar oq tem nele (nao esquecer da pasta secret_gen)
 

@@ -15,7 +15,7 @@ def contact(request):
                 ['destinatario@email.com'],  # Substitua pelo email do destinatário
                 fail_silently=False,
             )
-            return redirect('contact_form')  # Redirecionar para a página de confirmação de envio
+            return redirect('contact_form') 
     else:
         form = ContactForm()
-    return render(request, 'contact/contact_form.html', {'form': form})
+    return render(request, 'contact_form.html', {'form': form})
