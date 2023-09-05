@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .formulario import ContactForm
+from .form import ContactForm
 from django.core.mail import send_mail
 
 def contact(request):
@@ -12,7 +12,7 @@ def contact(request):
                 'Nova Mensagem de Contato',
                 form.cleaned_data['mensagem'],
                 'seu_email@gmail.com',  # Substitua pelo seu email de envio
-                ['destinatario@email.com'],  # Substitua pelo email do destinatário
+                ['patrick.souza@aluno.riogrande.ifrs.edu.br'],  # Substitua pelo email do destinatário
                 fail_silently=False,
             )
             return redirect('contact_form') 

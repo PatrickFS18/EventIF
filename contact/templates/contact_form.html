@@ -57,7 +57,7 @@
                             </div>
                         {% endfor %}
                     {% endif %}
-                    <form action="." novalidate method="post">
+                    <form action="{% url 'contact_form' %}" novalidate method="POST">
                         {% csrf_token %}
                         
                         <div class="form-row label-block input-text">
