@@ -1,5 +1,5 @@
 """
-WSGI config for eventIF project.
+WSGI config for eventif project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -8,12 +8,9 @@ https://docs.djangoproject.com/en/4.2/howto/deployment/wsgi/
 """
 
 import os
-
 from dj_static import Cling
-
 from django.core.wsgi import get_wsgi_application
- 
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventIF.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "eventif.settings")
 
 application = Cling(get_wsgi_application())
