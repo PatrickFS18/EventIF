@@ -11,13 +11,7 @@ def contato_view(request):
         
         if form.is_valid():
                  
-            enviar_email(
-            'Contato do Evento',
-            settings.DEFAULT_FROM_EMAIL,
-            form.cleaned_data['email'],
-            'contact_email.txt',
-            form.cleaned_data
-            )
+            enviar_email(form.cleaned_data)
             messages.success(request, 'Mensagem enviada!')
             return redirect('/contact/')
     else:
