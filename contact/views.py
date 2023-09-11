@@ -26,4 +26,4 @@ def enviar_email(dados_contato):
     destinatario = [settings.DEFAULT_FROM_EMAIL, remetente]
     assunto = 'Contato do Evento'
     corpo_mensagem = render_to_string('contact_email.txt', {'dados_contato': dados_contato})
-    mail.send_mail(assunto, corpo_mensagem, remetente,[remetente,destinatario])
+    mail.send_mail(assunto, corpo_mensagem, remetente, destinatario)
