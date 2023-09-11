@@ -26,7 +26,7 @@ def create(request):
         form.cleaned_data
     )
     messages.success(request, 'Inscrição realizada com sucesso!')
-    return HttpResponseRedirect('/inscricao/')
+    return HttpResponseRedirect('/inscricao')
 
 def new(request):
     return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})

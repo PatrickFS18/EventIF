@@ -5,7 +5,7 @@ from django.core import mail
 class MailTest(TestCase):
     def setUp(self):
         data = dict(name='Patrick S', cpf='05429313930', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999006391')
-        self.response = self.client.post('/inscricao/', data)
+        self.response = self.client.post('/inscricao', data)
         self.email = mail.outbox[0]
         
     def test_subscription_email_subject(self):
