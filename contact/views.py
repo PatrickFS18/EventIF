@@ -1,28 +1,25 @@
-
 from .formulario import ContactForm  
 from django.conf import settings
 from django.core import mail
 from django.template.loader import render_to_string
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import HttpResponseRedirect
-
 
 def contato_view(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
+        
         if form.is_valid():
-           
-              
-            _send_mail(
+                 
+            enviar_email(
             'Contato do Evento',
             settings.DEFAULT_FROM_EMAIL,
             form.cleaned_data['email'],
             'contact_email.txt',
             form.cleaned_data
             )
-            messages.success(request, 'Inscrição realizada com sucesso!')
-            return HttpResponseRedirect('/inscricao/')
+            messages.success(request, 'Mensagem enviada!')
+            return redirect('/contact/')
     else:
         
         form = ContactForm()
@@ -30,7 +27,9 @@ def contato_view(request):
         return render(request, 'contact_form.html', {'form': form,'msg':msg})
     
     
-
-def _send_mail(subject, from_, to, template_name, context):
-    body = render_to_string(template_name, context)
-    mail.send_mail(subject, body, from_, [from_, to])
+def enviar_email(dados_contato):
+    remetente = dados_contato['email']
+    destinatario = ['contato@eventif.com.br', remetente]
+    assunto = 'Contato do Evento'
+    corpo_mensagem = render_to_string('contact_email.txt', {'dados_contato': dados_contato})
+    mail.send_mail(assunto, corpo_mensagem, remetente,[remetente,destinatario])
