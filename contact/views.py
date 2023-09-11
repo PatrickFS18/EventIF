@@ -23,7 +23,7 @@ def contato_view(request):
     
 def enviar_email(dados_contato):
     remetente = dados_contato['email']
-    destinatario = ['contato@eventif.com.br', remetente]
+    destinatario = [settings.DEFAULT_FROM_EMAIL, remetente]
     assunto = 'Contato do Evento'
     corpo_mensagem = render_to_string('contact_email.txt', {'dados_contato': dados_contato})
     mail.send_mail(assunto, corpo_mensagem, remetente,[remetente,destinatario])
