@@ -11,8 +11,8 @@ def contato_view(request):
             enviar_email(form.cleaned_data)  
 
             msg='success, testando'
-            return redirect('contato_form.html',{'msg':msg})  
+            return redirect('contact_form.html',{'msg':msg})  
     else:
         form = ContactForm()
-    msg='erro, testando'
-    return render(request, 'contato_form.html', {'form': form,'msg':msg})
+        msg='erro, testando'
+        return render(request, 'contact_form.html', {'form': form,'msg':msg})
