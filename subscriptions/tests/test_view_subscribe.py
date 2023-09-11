@@ -4,7 +4,7 @@ from django.core import mail
 
 class SubscribeGet(TestCase):
     def setUp(self):
-        self.response = self.client.get('/inscricao')
+        self.response = self.client.get('/inscricao/')
 
     def test_get(self):
         """GET /inscricao must return status_code 200"""
@@ -39,7 +39,7 @@ class SubscribeGet(TestCase):
 class SubscribePostValid(TestCase):
     def setUp(self):
         data = dict(name='Patrick S', cpf='05429313930', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999006391')
-        self.response = self.client.post('/inscricao', data)
+        self.response = self.client.post('/inscricao/', data)
 
     def test_post(self):
         self.assertEqual(302, self.response.status_code)
@@ -49,7 +49,7 @@ class SubscribePostValid(TestCase):
 
 class SubscribePostInvalid(TestCase):
     def setUp(self):
-        self.response = self.client.post('/inscricao', {})
+        self.response = self.client.post('/inscricao/', {})
 
     def test_post(self):
         self.assertEqual(200, self.response.status_code)
@@ -73,5 +73,5 @@ class SubscribeSuccessMessage(TestCase):
             email = 'patrick.souza@aluno.riogrande.ifrs.edu.br',
             phone = '53999006391'
         )
-        response = self.client.post('/inscricao', data, follow=True)
+        response = self.client.post('/inscricao/', data, follow=True)
         self.assertContains(response, 'Inscrição realizada com sucesso!')
