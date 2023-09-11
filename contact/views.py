@@ -1,12 +1,12 @@
 
-from django.shortcuts import render, redirect
 from .formulario import ContactForm  
 from django.conf import settings
-from django.conf import settings
 from django.core import mail
-from django.shortcuts import render
 from django.template.loader import render_to_string
 from django.shortcuts import render
+from django.contrib import messages
+from django.http import HttpResponseRedirect
+
 
 def contato_view(request):
     if request.method == 'POST':
@@ -21,8 +21,8 @@ def contato_view(request):
             'contact_email.txt',
             form.cleaned_data
             )
-            msg='success, testando'
-            return redirect('contact_form.html',{'msg':msg})  
+            messages.success(request, 'Inscrição realizada com sucesso!')
+            return HttpResponseRedirect('/inscricao/')
     else:
         
         form = ContactForm()
