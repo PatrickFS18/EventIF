@@ -23,6 +23,6 @@ urlpatterns = [
     path('', home),
     path('inscricao/', subscribe),
     path("admin/", admin.site.urls),
-    path("contact/",contato_view),
+    path("contact/",contato_view, name='contact'),
 
 ]

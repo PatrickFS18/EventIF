@@ -17,8 +17,8 @@ def contato_view(request):
     else:
         
         form = ContactForm()
-        msg='metodo get, carregou a pagina'
-        return render(request, 'contact_form.html', {'form': form,'msg':msg})
+    
+    return render(request, 'contact_form.html', {'form': form})
     
     
 def enviar_email(dados_contato):
