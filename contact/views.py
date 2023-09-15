@@ -5,7 +5,7 @@ from django.template.loader import render_to_string
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-def contato_view(request):
+def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
         
