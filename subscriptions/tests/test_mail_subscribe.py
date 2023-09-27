@@ -4,7 +4,7 @@ from django.core import mail
 
 class MailTest(TestCase):
     def setUp(self):
-        self.obj = Subscription.objects.create(name='Patrick Souza', cpf='03050320539', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999001530')
+        data = dict(name='Patrick Souza', cpf='057019302923', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
         self.response = self.client.post('/inscricao/', data)
         self.email = mail.outbox[0]
         
@@ -17,11 +17,11 @@ class MailTest(TestCase):
         self.assertEqual(expect, self.email.from_email)
     
     def test_subscription_email_to(self):
-        expect = ['contato@eventif.com.br', 'patrick.souza@aluno.riogrande.ifrs.edu.br'] 
+        expect = ['contato@eventif.com.br', 'patrick.souza@aluno.riogrande.ifrs.edu.br']  # Atualize os endereços de e-mail aqui
         self.assertEqual(expect, self.email.to)
     
     def test_subscription_email_body(self):
-        contents = ['Patrick S','05429313930', 'patrick.souza@aluno.riogrande.ifrs.edu.br', '53999006391']
+        contents = ['Patrick Souza','057019302923', 'patrick.souza@aluno.riogrande.ifrs.edu.br', '53095939539']
         for content in contents:
             with self.subTest():
                 self.assertIn(content, self.email.body)
