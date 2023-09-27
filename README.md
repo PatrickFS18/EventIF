@@ -8,11 +8,14 @@ Sistema do evento do IF que está sendo desenvolvido na disciplina de Desenvolvi
 3. Ative o Virtualenv
 4. Instale as dependencias
 5. Configure a instância com o arquivo .env
-6. Execute os testes 
+6. pip install -r requirements.txt
+7. python3 manage.py makemigrations
+8. python3 manage.py migrate
+9. Execute os testes 
 
 ``` console
 git clone https://github.com/PatrickFS18/EventIF.git
-cd eventif
+cd EventIF
 python -m venv .eventif
 source .eventif/bin/activate 
 pip install -r requirements.txt
