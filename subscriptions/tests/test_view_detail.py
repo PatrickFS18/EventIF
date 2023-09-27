@@ -3,14 +3,14 @@ from subscriptions.models import Subscription
 
 class SubscriptionDetailGet(TestCase):
     def setUp(self):
-        self.obj = Subscription.objects.create(name='Patrick Souza', cpf='03050320539', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999001530')
+        self.obj = Subscription.objects.create(name='Patrick Souza', cpf='057019302923', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
         self.resp = self.client.get('/inscricao/{}/'.format(self.obj.pk))
 
     def test_get(self):
         self.assertEqual(200, self.resp.status_code)
     
     def test_template(self):
-        self.assertTemplateUsed(self.resp, 'subscription_detail.html')
+        self.assertTemplateUsed(self.resp, 'subscriptions/subscription_detail.html')
 
     def test_context(self):
         sub = self.resp.context['subscription']

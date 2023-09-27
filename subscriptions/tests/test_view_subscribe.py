@@ -56,7 +56,7 @@ class SubscribePostInvalid(TestCase):
         self.assertEqual(200, self.response.status_code)
 
     def test_template(self):
-        self.assertTemplateUsed(self.response, 'subscription_form.html')
+        self.assertTemplateUsed(self.response, 'subscriptions/subscription_form.html')
 
     def test_has_form(self):
         form = self.response.context['form']

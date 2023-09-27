@@ -4,7 +4,7 @@ from datetime import datetime
 
 class SubscriptionModelTest(TestCase):
     def setUp(self):
-        self.obj = Subscription(name = 'Cleber Fonsceca', cpf = '057019302923', email = 'patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
+        self.obj = Subscription(name = 'Patrick Souza', cpf = '057019302923', email = 'patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
         self.obj.save()
     def test_create(self):
         self.assertTrue(Subscription.objects.exists())
@@ -13,4 +13,4 @@ class SubscriptionModelTest(TestCase):
         self.assertIsInstance(self.obj.created_at, datetime)
     
     def test_str(self):
-        self.assertEqual('Cleber Fonsceca', str(self.obj))
+        self.assertEqual('Patrick Souza', str(self.obj))
