@@ -1,11 +1,12 @@
 from django.test import TestCase
 from subscriptions.forms import SubscriptionForm
 from django.core import mail
+from django.shortcuts import resolve_url as r
 
 class MailTest(TestCase):
     def setUp(self):
         data = dict(name='Patrick Souza', cpf='057019302923', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
-        self.response = self.client.post('/inscricao/', data)
+        self.response = self.client.post(r('subscriptions:new'), data)
         self.email = mail.outbox[0]
         
     def test_subscription_email_subject(self):

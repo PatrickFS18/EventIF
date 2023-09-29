@@ -8,8 +8,13 @@ class test_contact_view(TestCase):
         response = self.client.get(reverse('contact'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'contact_form.html')
-              
+        
+    def test_csrf(self):
+        response = self.client.get(reverse('contact'))
+        self.assertContains(response, 'csrfmiddlewaretoken')
+        
     def test_post_valido(self):
+        
         data = {
             'name': 'Patrick',
             'phone': '5399999999',
@@ -24,4 +29,4 @@ class test_contact_view(TestCase):
         data = {} 
         response = self.client.post(reverse('contact'), data)
         self.assertEqual(response.status_code, 200) 
-
+    
