@@ -4,7 +4,7 @@ from django.shortcuts import resolve_url as r
 
 class SubscriptionDetailGet(TestCase):
     def setUp(self):
-        self.obj = Subscription.objects.create(name='Patrick Souza', cpf='057019302923', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53095939539')
+        self.obj = Subscription.objects.create(name='Patrick Souza', cpf='057019302923', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='539999999')
         self.resp = self.client.get(r('subscriptions:detail',self.obj.pk))
 
     def test_get(self):

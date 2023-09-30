@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "test_without_migrations",
     "django_extensions",
-    "core",
     "subscriptions.apps.SubscriptionsConfig",
+    "core",
     "contact",
     
 ]

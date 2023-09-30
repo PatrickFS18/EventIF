@@ -5,10 +5,10 @@ class test_contact_form(TestCase):
 
     def test_form_valido(self):
         data = {
-            'name': 'Patrikc',
-            'phone': '53999101031',
-            'email': 'patrick@gmail.com',
-            'message': 'teste mensagem.'
+            'name': 'Patrick',
+            'phone': '5399999999',
+            'email': 'patrick.souza@aluno.riogrande.ifrs.edu.br',
+            'message': 'Eai, bro'
         }
         form = ContactForm(data)
         self.assertTrue(form.is_valid())

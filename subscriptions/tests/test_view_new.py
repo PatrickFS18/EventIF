@@ -3,8 +3,9 @@ from subscriptions.forms import SubscriptionForm
 from django.core import mail
 from subscriptions.models import Subscription
 from django.shortcuts import resolve_url as r
-
 class SubscriptionsNewGet(TestCase):
+    
+    
     def setUp(self):
         self.response = self.client.get(r('subscriptions:new'))
 
@@ -36,7 +37,7 @@ class SubscriptionsNewGet(TestCase):
 
 class SubscriptionsNewPostValid(TestCase):
     def setUp(self):
-        data = dict(name='Patrick Souza', cpf='03050320539', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999001530')
+        data = dict(name='Patrick', cpf='06758923943', email='patrick.souza@aluno.riogrande.ifrs.edu.br', phone='53999999999')
         self.response = self.client.post(r('subscriptions:new'), data)
 
     def test_post(self): 
@@ -49,7 +50,7 @@ class SubscriptionsNewPostValid(TestCase):
         self.assertTrue(Subscription.objects.exists())
     
 
-class SubscriptionsNewPostInvalid(TestCase):
+class SubscriptionsNewInvalid(TestCase):
     def setUp(self):
         self.response = self.client.post(r('subscriptions:new'), {})
 
@@ -69,3 +70,4 @@ class SubscriptionsNewPostInvalid(TestCase):
 
     def test_dont_save_subscription(self):
         self.assertFalse(Subscription.objects.exists())
+
